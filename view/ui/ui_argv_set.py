@@ -1,0 +1,91 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'argv_set.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.3
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(539, 269)
+        Dialog.setSizeGripEnabled(True)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(Dialog)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label_3 = QtWidgets.QLabel(Dialog)
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout.addWidget(self.label_3)
+        self.argv_set_le = QtWidgets.QLineEdit(Dialog)
+        self.argv_set_le.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.argv_set_le.setObjectName("argv_set_le")
+        self.verticalLayout.addWidget(self.argv_set_le)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_4 = QtWidgets.QLabel(Dialog)
+        self.label_4.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.label_4.setObjectName("label_4")
+        self.horizontalLayout.addWidget(self.label_4)
+        self.argv_info_pte = QtWidgets.QPlainTextEdit(Dialog)
+        self.argv_info_pte.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.argv_info_pte.setReadOnly(True)
+        self.argv_info_pte.setObjectName("argv_info_pte")
+        self.horizontalLayout.addWidget(self.argv_info_pte)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setObjectName("gridLayout")
+        self.argv_cb = QtWidgets.QComboBox(Dialog)
+        self.argv_cb.setObjectName("argv_cb")
+        self.argv_cb.addItem("")
+        self.argv_cb.addItem("")
+        self.argv_cb.addItem("")
+        self.argv_cb.addItem("")
+        self.gridLayout.addWidget(self.argv_cb, 0, 1, 1, 1)
+        self.argv_action_btn = QtWidgets.QPushButton(Dialog)
+        self.argv_action_btn.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.argv_action_btn.setObjectName("argv_action_btn")
+        self.gridLayout.addWidget(self.argv_action_btn, 0, 5, 1, 1)
+        self.label = QtWidgets.QLabel(Dialog)
+        self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.argv_value_le = QtWidgets.QLineEdit(Dialog)
+        self.argv_value_le.setObjectName("argv_value_le")
+        self.gridLayout.addWidget(self.argv_value_le, 0, 3, 1, 1)
+        self.label_2 = QtWidgets.QLabel(Dialog)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 0, 2, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 0, 4, 1, 1)
+        self.argv_confirm_btn = QtWidgets.QPushButton(Dialog)
+        self.argv_confirm_btn.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.argv_confirm_btn.setObjectName("argv_confirm_btn")
+        self.gridLayout.addWidget(self.argv_confirm_btn, 1, 4, 1, 1)
+        self.argv_cancel_le = QtWidgets.QPushButton(Dialog)
+        self.argv_cancel_le.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.argv_cancel_le.setObjectName("argv_cancel_le")
+        self.gridLayout.addWidget(self.argv_cancel_le, 1, 5, 1, 1)
+        self.verticalLayout.addLayout(self.gridLayout)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.label_3.setText(_translate("Dialog", "参数设置栏"))
+        self.label_4.setText(_translate("Dialog", "参数信息"))
+        self.argv_cb.setItemText(0, _translate("Dialog", "单值"))
+        self.argv_cb.setItemText(1, _translate("Dialog", "步长"))
+        self.argv_cb.setItemText(2, _translate("Dialog", "均匀分布"))
+        self.argv_cb.setItemText(3, _translate("Dialog", "正态分布"))
+        self.argv_action_btn.setText(_translate("Dialog", "添加动作"))
+        self.label.setText(_translate("Dialog", "取值方式"))
+        self.label_2.setText(_translate("Dialog", "取值范围"))
+        self.argv_confirm_btn.setText(_translate("Dialog", "确认"))
+        self.argv_cancel_le.setText(_translate("Dialog", "取消"))
+
