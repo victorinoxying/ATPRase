@@ -8,7 +8,6 @@
 """
 import random
 from decimal import Decimal
-
 from utils.AtpSetting import AtpSetting
 
 

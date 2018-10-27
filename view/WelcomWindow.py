@@ -1,11 +1,11 @@
 import cgitb
 import os
 import sys
-
+from utils.RecentItemRW import RecentItemRW
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QApplication, QMessageBox
 
 from utils.AtpBat import AtpBat
-from view.MenuBarTest import MenuBar
+from view.MenuBar import MenuBar
 from view.ui.ui_Welcom import Ui_WelcomeWindow
 
 
@@ -13,20 +13,25 @@ class WelcomWindow(QMainWindow, Ui_WelcomeWindow):
     def __init__(self):
         super(WelcomWindow, self).__init__()
         self.setupUi(self)
+        #菜单栏界面
         self.menuBar = None
-        self.__recent_items_path = 'data\\recent_use_item.txt'
+        # 读取到的最近打开项目路径列表
         self.recent_item_list = []
+        # 初始化最近打开项目
         self.reset_recent_item_label()
-
-        #   需要一个 打开文件夹 调用adp的接口
+        # pushbutton事件
         self.button_loadADP.clicked.connect(self.load_ADPfile)
         self.button_settingATPRun.clicked.connect(self.setting_runATPexe)
+        # 菜单栏事件
+
+
+
+
 
         if not os.path.exists('data'):
             os.mkdir('data')
 
     #   设置runATp 的路径函数
-    #   待完成
     def setting_runATPexe(self):
         file, n_1 = QFileDialog.getOpenFileName(self, "请选取runATP_G.bat脚本文件", '', 'BAT(*.bat)')
         if not file:
@@ -46,9 +51,7 @@ class WelcomWindow(QMainWindow, Ui_WelcomeWindow):
         if not AtpBat.isBatExists():
             QMessageBox.warning(self, "错误", '请先配置runATP_G.bat脚本文件')
             return
-
         file = QFileDialog.getOpenFileName(self, "选取项目文件", '', 'ADP or ACP Files(*.adp *.acp)')
-
         if not file:
             return
         path = str(file[0])
@@ -56,7 +59,8 @@ class WelcomWindow(QMainWindow, Ui_WelcomeWindow):
         # 选中后
         if path:
             # 处理存储最近项目的txt文件
-            count = self.read_recent_items()
+            self.recent_item_list= RecentItemRW.read_recent_items()
+            count = len(self.recent_item_list)
             if count == 0:
                 self.recent_item_list.append(path)
             else:
@@ -65,13 +69,17 @@ class WelcomWindow(QMainWindow, Ui_WelcomeWindow):
                         del self.recent_item_list[0]
                     self.recent_item_list.append(path)
 
-            self.write_recent_items()
+            RecentItemRW.write_recent_items(self.recent_item_list)
             #   接口，将file传递给menu->mainwindow
             self.show_MenuBar_MainWindow(path)
 
+
+
+
     # 添加相最近打开项目的label到主界面
     def reset_recent_item_label(self):
-        count = self.read_recent_items()
+        self.recent_item_list = RecentItemRW.read_recent_items()
+        count = len(self.recent_item_list)
         self.label_1.setText("")
         self.label_1.setFilePath(None)
         self.label_2.setText("")
@@ -129,6 +137,7 @@ class WelcomWindow(QMainWindow, Ui_WelcomeWindow):
             if count == 0:
                 return
 
+    # 标签点击事件
     def label1_clicked(self):
         path = self.label_1.getFilePath()
         if path:
@@ -164,9 +173,8 @@ class WelcomWindow(QMainWindow, Ui_WelcomeWindow):
 
     # 打开工作界面
     def show_MenuBar_MainWindow(self, path):
-        if os.path.exists(path):
+        if os.path.isfile(path):
             self.menuBar = MenuBar(path)
-            print(path)
             self.menuBar.show()
             self.menuBar.showMainWindow()
             self.menuBar.showATPdraw()
@@ -178,36 +186,12 @@ class WelcomWindow(QMainWindow, Ui_WelcomeWindow):
                                           QMessageBox.Ok)
             if button == QMessageBox.Ok:
                 self.recent_item_list.remove(path)
-                self.write_recent_items()
+                RecentItemRW.write_recent_items(self.recent_item_list)
                 # 刷新页面
                 self.reset_recent_item_label()
             elif button == QMessageBox.Cancel:
                 return
 
-
-
-    def read_recent_items(self):
-        self.recent_item_list.clear()
-        if not os.path.exists(self.__recent_items_path):
-            return len(self.recent_item_list)
-
-        fileStream = open(self.__recent_items_path, 'r')
-        for line in fileStream.readlines():
-            if line == '\n':
-                continue
-            itemInfo = line.split(' ')
-            self.recent_item_list.append(itemInfo[1])
-        fileStream.close()
-        return len(self.recent_item_list)
-
-    def write_recent_items(self):
-        fileStream = open(self.__recent_items_path, 'w+')
-        for i in range(len(self.recent_item_list)):
-            if i == 0:
-                fileStream.write(str(i) + ' ' + self.recent_item_list[i])
-            else:
-                fileStream.write('\n' + str(i) + ' ' + self.recent_item_list[i])
-        fileStream.close()
 
 
 if __name__ == '__main__':

@@ -47,17 +47,9 @@
     <property name="title">
      <string>开始</string>
     </property>
-    <addaction name="actionloadATP"/>
     <addaction name="actionloadADP"/>
     <addaction name="actionupdateATP"/>
     <addaction name="actionrunATP"/>
-    <addaction name="actionsetScript"/>
-   </widget>
-   <widget class="QMenu" name="drawMenu">
-    <property name="title">
-     <string>设计</string>
-    </property>
-    <addaction name="actiondrawATP"/>
    </widget>
    <widget class="QMenu" name="settingMenu">
     <property name="title">
@@ -66,7 +58,6 @@
     <addaction name="actionnetWork"/>
    </widget>
    <addaction name="startMenu"/>
-   <addaction name="drawMenu"/>
    <addaction name="settingMenu"/>
   </widget>
   <action name="actionloadATP">

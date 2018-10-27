@@ -9,7 +9,7 @@ class ItemLabel(QLabel):
 
     def __init__(self, parent=None):
         super(ItemLabel, self).__init__(parent)
-        self.ADP_filePath = None
+        self.ADP_filePath = ''
         self.setWordWrap(True)
         self.setAlignment(Qt.AlignVCenter | Qt.AlignHCenter)
         self.setFont(QFont("Roman times", 10.5))  ##设置字体
@@ -36,4 +36,4 @@ class ItemLabel(QLabel):
         self.ADP_filePath = path
 
     def getFilePath(self):
-        return self.ADP_filePath
+        return self.ADP_filePath.strip()
